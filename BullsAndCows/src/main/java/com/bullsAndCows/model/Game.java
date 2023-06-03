@@ -1,7 +1,4 @@
 package com.bullsAndCows.model;
-
-import org.hibernate.annotations.Type;
-
 public class Game {
     private int id;
     private String answer;
@@ -26,8 +23,6 @@ public class Game {
     public Boolean isOngoing() {
         return isOngoing;
     }
-
-    public void setGameOver() { isOngoing = false; }
 
     @Override
     public String toString() {

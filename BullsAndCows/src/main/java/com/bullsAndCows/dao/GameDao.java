@@ -1,9 +1,7 @@
 package com.bullsAndCows.dao;
 
 import com.bullsAndCows.model.Game;
-import com.bullsAndCows.model.Round;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -24,14 +22,9 @@ public class GameDao {
 
     public Game getGame(int id) {
         return jdbc.queryForObject("SELECT * FROM games WHERE id = ?",
-                new RowMapper<Game>() {
-                    @Override
-                    public Game mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return new Game(rs.getInt("id"),
-                                rs.getString("answer"),
-                                rs.getBoolean("isOngoing"));
-                    }
-                }, id);
+                (rs, rowNum) -> new Game(rs.getInt("id"),
+                        rs.getString("answer"),
+                        rs.getBoolean("isOngoing")), id);
     }
 
     public boolean gameExists(int id) {
@@ -44,13 +37,8 @@ public class GameDao {
 
     public List<Game> getAllGames() {
         return jdbc.query("SELECT * FROM games",
-                new RowMapper<Game>() {
-                    @Override
-                    public Game mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return new Game(rs.getInt("id"),
-                                rs.getString("answer"),
-                                rs.getBoolean("isOngoing"));
-                    }
-                });
+                (rs, rowNum) -> new Game(rs.getInt("id"),
+                        rs.getString("answer"),
+                        rs.getBoolean("isOngoing")));
     }
 }
