@@ -1,12 +1,12 @@
-package com.bullsAndCows;
+package com.carAgency;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = { "com.bullsAndCows" })
-public class BullsAndCowsApplication {
+public class CarAgency {
 	public static void main(String[] args) {
-		SpringApplication.run(BullsAndCowsApplication.class, args);
+		SpringApplication.run(CarAgency.class, args);
 	}
 
 }
